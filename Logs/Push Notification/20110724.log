@@ -1,0 +1,21 @@
+20110724 1928 - Info - Payload queue received.
+20110724 1928 - Info - Connecting to apple server.
+20110724 1928 - Info - Creating SSL connection.
+20110724 1928 - Info - Conected.
+20110724 1928 - Info - Payload generated for 498a47348b020a74fd30d6cc9ed4f7845d09ee447738b521a31cb3b267b5cc26 : {"aps":{"alert":"An updated weather forecast for Brisbane is available.","badge":1,"sound":"default"},"RegionID":"IDQ10095"}
+20110724 1928 - Info - Notification successfully sent to APNS server for Device Toekn : 498a47348b020a74fd30d6cc9ed4f7845d09ee447738b521a31cb3b267b5cc26
+20110724 1928 - Info - Disconnected.
+20110724 2237 - Info - Payload queue received.
+20110724 2239 - Info - Payload queue received.
+20110724 2247 - Info - Payload queue received.
+20110724 2321 - Info - Payload queue received.
+20110724 2322 - Info - Payload queue received.
+20110724 2327 - Info - Payload queue received.
+20110724 2327 - Error - An error occurred while disconnecting. - Object reference not set to an instance of an object.
+20110724 2330 - Info - Payload queue received.
+20110724 2330 - Info - Connecting to apple server.
+20110724 2330 - Info - Creating SSL connection.
+20110724 2330 - Info - Conected.
+20110724 2330 - Info - Payload generated for 498a47348b020a74fd30d6cc9ed4f7845d09ee447738b521a31cb3b267b5cc26 : {"aps":{"alert":"An updated weather forecast for Brisbane is available.","badge":1,"sound":"default"},"RegionID":"IDQ10095"}
+20110724 2330 - Info - Notification successfully sent to APNS server for Device Toekn : 498a47348b020a74fd30d6cc9ed4f7845d09ee447738b521a31cb3b267b5cc26
+20110724 2330 - Info - Disconnected.

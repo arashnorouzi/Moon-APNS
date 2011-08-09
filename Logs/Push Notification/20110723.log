@@ -1,0 +1,53 @@
+
+20110723 1827 - Info - Payload queue received.
+20110723 1827 - Info - Connecting to apple server.
+20110723 1827 - Info - Creating SSL connection.
+20110723 1827 - Info - Conected.
+20110723 1827 - Info - Payload generated for 498a47348b020a74fd30d6cc9ed4f7845d09ee447738b521a31cb3b267b5cc26 : {"aps":{"alert":"salam Arash!","badge":1,"sound":"default"},"RegionID":"IDQ10150"}
+20110723 1827 - Info - Notification successfully sent to APNS server for Device Toekn : 498a47348b020a74fd30d6cc9ed4f7845d09ee447738b521a31cb3b267b5cc26
+20110723 1827 - Info - Payload generated for 1bd0d35214f7da3c19496c29fb6de811ad3d652c66d6b2d2c05ace79046ec788 : {"aps":{"alert":"salam Arash!","badge":1,"sound":"default"},"RegionID":"IDQ10150"}
+20110723 1827 - Info - Notification successfully sent to APNS server for Device Toekn : 1bd0d35214f7da3c19496c29fb6de811ad3d652c66d6b2d2c05ace79046ec788
+20110723 1827 - Error - Apple rejected palyload for device token : 1bd0d35214f7da3c19496c29fb6de811ad3d652c66d6b2d2c05ace79046ec788
+20110723 1827 - Error - Connection terminated by Apple.
+20110723 1827 - Info - Connecting to apple server.
+20110723 1827 - Info - Creating SSL connection.
+20110723 1827 - Info - Conected.
+20110723 1827 - Info - Payload generated for ee048ae0fca4b347a10724497235e004efe95fecc3c3b776c27a185b2f977895 : {"aps":{"alert":"salam Arash!","badge":1,"sound":"default"},"RegionID":"IDQ10150"}
+20110723 1827 - Info - Notification successfully sent to APNS server for Device Toekn : ee048ae0fca4b347a10724497235e004efe95fecc3c3b776c27a185b2f977895
+20110723 1827 - Info - Disconnected.
+20110723 1827 - Error - An error occurred while reading Apple response for token 0 - Safe handle has been closed
+20110723 1831 - Info - Payload queue received.
+20110723 1831 - Info - Connecting to apple server.
+20110723 1831 - Info - Creating SSL connection.
+20110723 1831 - Info - Conected.
+20110723 1831 - Info - Payload generated for 498a47348b020a74fd30d6cc9ed4f7845d09ee447738b521a31cb3b267b5cc26 : {"aps":{"alert":"salam Arash!","badge":1,"sound":"default"},"RegionID":"IDQ10150"}
+20110723 1831 - Info - Notification successfully sent to APNS server for Device Toekn : 498a47348b020a74fd30d6cc9ed4f7845d09ee447738b521a31cb3b267b5cc26
+20110723 1831 - Info - Payload generated for 1bd0d35214f7da3c19496c29fb6de811ad3d652c66d6b2d2c05ace79046ec788 : {"aps":{"alert":"salam Arash!","badge":1,"sound":"default"},"RegionID":"IDQ10150"}
+20110723 1831 - Info - Notification successfully sent to APNS server for Device Toekn : 1bd0d35214f7da3c19496c29fb6de811ad3d652c66d6b2d2c05ace79046ec788
+20110723 1831 - Error - Apple rejected palyload for device token : 1bd0d35214f7da3c19496c29fb6de811ad3d652c66d6b2d2c05ace79046ec788
+20110723 1831 - Error - Connection terminated by Apple.
+20110723 1832 - Info - Connecting to apple server.
+20110723 1832 - Info - Creating SSL connection.
+20110723 1832 - Info - Conected.
+20110723 1832 - Info - Payload generated for ee048ae0fca4b347a10724497235e004efe95fecc3c3b776c27a185b2f977895 : {"aps":{"alert":"salam Arash!","badge":1,"sound":"default"},"RegionID":"IDQ10150"}
+20110723 1832 - Info - Notification successfully sent to APNS server for Device Toekn : ee048ae0fca4b347a10724497235e004efe95fecc3c3b776c27a185b2f977895
+20110723 1832 - Info - Disconnected.
+20110723 1832 - Error - An error occurred while reading Apple response for token 0 - Safe handle has been closed
+20110723 1849 - Info - Payload queue received.
+20110723 1849 - Info - Connecting to apple server.
+20110723 1849 - Info - Creating SSL connection.
+20110723 1849 - Info - Conected.
+20110723 1849 - Info - Payload generated for 498a47348b020a74fd30d6cc9ed4f7845d09ee447738b521a31cb3b267b5cc26 : {"aps":{"alert":"salam Arash!","badge":1,"sound":"default"},"RegionID":"IDQ10150"}
+20110723 1849 - Info - Notification successfully sent to APNS server for Device Toekn : 498a47348b020a74fd30d6cc9ed4f7845d09ee447738b521a31cb3b267b5cc26
+20110723 1849 - Info - Payload generated for 1bd0d35214f7da3c19496c29fb6de811ad3d652c66d6b2d2c05ace79046ec788 : {"aps":{"alert":"salam Arash!","badge":1,"sound":"default"},"RegionID":"IDQ10150"}
+20110723 1849 - Info - Notification successfully sent to APNS server for Device Toekn : 1bd0d35214f7da3c19496c29fb6de811ad3d652c66d6b2d2c05ace79046ec788
+20110723 1849 - Error - Apple rejected palyload for device token : 1bd0d35214f7da3c19496c29fb6de811ad3d652c66d6b2d2c05ace79046ec788
+20110723 1849 - Error - Apple Error code : Invalid token
+20110723 1849 - Error - Connection terminated by Apple.
+20110723 1849 - Info - Connecting to apple server.
+20110723 1849 - Info - Creating SSL connection.
+20110723 1849 - Info - Conected.
+20110723 1849 - Info - Payload generated for ee048ae0fca4b347a10724497235e004efe95fecc3c3b776c27a185b2f977895 : {"aps":{"alert":"salam Arash!","badge":1,"sound":"default"},"RegionID":"IDQ10150"}
+20110723 1849 - Info - Notification successfully sent to APNS server for Device Toekn : ee048ae0fca4b347a10724497235e004efe95fecc3c3b776c27a185b2f977895
+20110723 1849 - Info - Disconnected.
+20110723 1849 - Error - An error occurred while reading Apple response for token 0 - Safe handle has been closed
