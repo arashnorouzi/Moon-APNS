@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoonAPNS", "MoonAPNS.csproj", "{A91E03EF-6532-4896-89C4-9FCEC1D8D4DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoonAPNS", "Application\MoonApns\MoonAPNS.csproj", "{A91E03EF-6532-4896-89C4-9FCEC1D8D4DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
