@@ -129,12 +129,12 @@ namespace MoonAPNS
             }
             try
             {
-                if (item.DeviceToken.Length == 64) //check lenght of device token, if its shorter or longer stop generating Payload.
+                if (item.DeviceToken.Length == 64) //check length of device token, if its shorter or longer stop generating Payload.
                 {
                     item.PayloadId = i;
                     byte[] payload = GeneratePayload(item);
                     _apnsStream.Write(payload);
-                    Logger.Info("Notification successfully sent to APNS server for Device Toekn : " + item.DeviceToken);
+                    Logger.Info("Notification successfully sent to APNS server for Device Token : " + item.DeviceToken);
                     Thread.Sleep(1000); //Wait to get the response from apple.
                 }
                 else
@@ -168,7 +168,7 @@ namespace MoonAPNS
 
           payLoadId = Encoding.Default.GetString(ID);
           payLoadIndex = ((int.Parse(payLoadId)) - 1000);
-          Logger.Error("Apple rejected palyload for device token : " + _notifications[payLoadIndex].DeviceToken);
+          Logger.Error("Apple rejected payload for device token : " + _notifications[payLoadIndex].DeviceToken);
           Logger.Error("Apple Error code : " + _errorList[status]);
           Logger.Error("Connection terminated by Apple.");
           _rejected.Add(_notifications[payLoadIndex].DeviceToken);
@@ -183,7 +183,7 @@ namespace MoonAPNS
 
     private void Connect(string host, int port, X509CertificateCollection certificates)
     {
-      Logger.Info("Connecting to apple server.");
+      Logger.Info("Connecting to Apple server.");
       try
       {
         _apnsClient = new TcpClient();
@@ -199,7 +199,7 @@ namespace MoonAPNS
       if (sslOpened)
       {
         _conected = true;
-        Logger.Info("Conected.");
+        Logger.Info("Connected.");
       }
 
     }
