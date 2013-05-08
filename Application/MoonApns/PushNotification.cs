@@ -74,7 +74,7 @@ namespace MoonAPNS
       }
 
       //Load Certificates in to collection.
-      _certificate = string.IsNullOrEmpty(p12FilePassword)? new X509Certificate2(File.ReadAllBytes(p12File)): new X509Certificate2(File.ReadAllBytes(p12File), p12FilePassword);
+      _certificate = string.IsNullOrEmpty(p12FilePassword)? new X509Certificate2(File.ReadAllBytes(p12File)): new X509Certificate2(File.ReadAllBytes(p12File), p12FilePassword, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.PersistKeySet | X509KeyStorageFlags.Exportable);
       _certificates = new X509CertificateCollection {_certificate};
       
       // Loading Apple error response list.
