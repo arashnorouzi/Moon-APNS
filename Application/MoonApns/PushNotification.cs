@@ -134,7 +134,7 @@ namespace MoonAPNS
                     item.PayloadId = i;
                     byte[] payload = GeneratePayload(item);
                     _apnsStream.Write(payload);
-                    Logger.Info("Notification successfully sent to APNS server for Device Toekn : " + item.DeviceToken);
+                    Logger.Info("Notification successfully sent to APNS server for Device Token : " + item.DeviceToken);
                     Thread.Sleep(1000); //Wait to get the response from apple.
                 }
                 else
@@ -199,7 +199,7 @@ namespace MoonAPNS
       if (sslOpened)
       {
         _conected = true;
-        Logger.Info("Conected.");
+        Logger.Info("Connected.");
       }
 
     }
@@ -386,7 +386,7 @@ namespace MoonAPNS
       }
       catch (Exception ex)
       {
-        Logger.Error("Error occurred on receiving feed back. - " + ex.Message);
+        Logger.Error("Error occurred on receiving feedback. - " + ex.Message);
         return null;
       }
       return null;
