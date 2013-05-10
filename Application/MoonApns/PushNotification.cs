@@ -294,15 +294,17 @@ namespace MoonAPNS
       // String length
         string apnMessage = payload.ToJson();
         Logger.Info("Payload generated for " + payload.DeviceToken + " : " + apnMessage);
-
-        byte[] apnMessageLength = BitConverter.GetBytes((Int16) apnMessage.Length);
-        Array.Reverse(apnMessageLength);
+		
+		int apnMessageLength = Encoding.UTF8.GetByteCount(apnMessage);
+		
+        byte[] apnMessageByteArray = BitConverter.GetBytes((Int16)apnMessageLength);
+		Array.Reverse(apnMessageByteArray);
 
         // message length
-        memoryStream.Write(apnMessageLength, 0, 2);
+        memoryStream.Write(apnMessageByteArray, 0, 2);
 
         // Write the message
-        memoryStream.Write(Encoding.ASCII.GetBytes(apnMessage), 0, apnMessage.Length);
+        memoryStream.Write(Encoding.UTF8.GetBytes(apnMessage), 0, apnMessageLength);
         return memoryStream.ToArray();
       }
       catch (Exception ex)
