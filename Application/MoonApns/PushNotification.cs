@@ -74,7 +74,7 @@ namespace MoonAPNS
       }
 
       //Load Certificates in to collection.
-      _certificate = string.IsNullOrEmpty(p12FilePassword)? new X509Certificate2(File.ReadAllBytes(p12File)): new X509Certificate2(File.ReadAllBytes(p12File), p12FilePassword);
+      _certificate = string.IsNullOrEmpty(p12FilePassword)? new X509Certificate2(File.ReadAllBytes(p12File)): new X509Certificate2(File.ReadAllBytes(p12File), p12FilePassword, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.PersistKeySet | X509KeyStorageFlags.Exportable);
       _certificates = new X509CertificateCollection {_certificate};
       
       // Loading Apple error response list.
@@ -134,7 +134,7 @@ namespace MoonAPNS
                     item.PayloadId = i;
                     byte[] payload = GeneratePayload(item);
                     _apnsStream.Write(payload);
-                    Logger.Info("Notification successfully sent to APNS server for Device Toekn : " + item.DeviceToken);
+                    Logger.Info("Notification successfully sent to APNS server for Device Token : " + item.DeviceToken);
                     Thread.Sleep(1000); //Wait to get the response from apple.
                 }
                 else
@@ -199,7 +199,7 @@ namespace MoonAPNS
       if (sslOpened)
       {
         _conected = true;
-        Logger.Info("Conected.");
+        Logger.Info("Connected.");
       }
 
     }
@@ -294,15 +294,17 @@ namespace MoonAPNS
       // String length
         string apnMessage = payload.ToJson();
         Logger.Info("Payload generated for " + payload.DeviceToken + " : " + apnMessage);
-
-        byte[] apnMessageLength = BitConverter.GetBytes((Int16) apnMessage.Length);
-        Array.Reverse(apnMessageLength);
+		
+		int apnMessageLength = Encoding.UTF8.GetByteCount(apnMessage);
+		
+        byte[] apnMessageByteArray = BitConverter.GetBytes((Int16)apnMessageLength);
+		Array.Reverse(apnMessageByteArray);
 
         // message length
-        memoryStream.Write(apnMessageLength, 0, 2);
+        memoryStream.Write(apnMessageByteArray, 0, 2);
 
         // Write the message
-        memoryStream.Write(Encoding.ASCII.GetBytes(apnMessage), 0, apnMessage.Length);
+        memoryStream.Write(Encoding.UTF8.GetBytes(apnMessage), 0, apnMessageLength);
         return memoryStream.ToArray();
       }
       catch (Exception ex)
@@ -386,7 +388,7 @@ namespace MoonAPNS
       }
       catch (Exception ex)
       {
-        Logger.Error("Error occurred on receiving feed back. - " + ex.Message);
+        Logger.Error("Error occurred on receiving feedback. - " + ex.Message);
         return null;
       }
       return null;
