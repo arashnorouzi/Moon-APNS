@@ -1,4 +1,4 @@
-/*Copyright 2011 Arash Norouzi
+/* Copyright 2011 Arash Norouzi
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -73,8 +73,8 @@ namespace MoonAPNS
         _feedbackHost = ProductionFeedbackHost;
       }
 
-      //Load Certificates in to collection.
-      _certificate = string.IsNullOrEmpty(p12FilePassword)? new X509Certificate2(File.ReadAllBytes(p12File)): new X509Certificate2(File.ReadAllBytes(p12File), p12FilePassword);
+      // Load Certificates in to collection.
+      _certificate = string.IsNullOrEmpty(p12FilePassword)? new X509Certificate2(File.ReadAllBytes(p12File)): new X509Certificate2(File.ReadAllBytes(p12File), p12FilePassword, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.PersistKeySet | X509KeyStorageFlags.Exportable);
       _certificates = new X509CertificateCollection {_certificate};
       
       // Loading Apple error response list.
@@ -111,7 +111,7 @@ namespace MoonAPNS
                 currentPage++;
             }
         }
-        //Close the connection
+        // Close the connection
         Disconnect();
         return _rejected;
     }
@@ -129,13 +129,13 @@ namespace MoonAPNS
             }
             try
             {
-                if (item.DeviceToken.Length == 64) //check length of device token, if its shorter or longer stop generating Payload.
+                if (item.DeviceToken.Length == 64) // Check length of device token, if its shorter or longer stop generating Payload.
                 {
                     item.PayloadId = i;
                     byte[] payload = GeneratePayload(item);
                     _apnsStream.Write(payload);
                     Logger.Info("Notification successfully sent to APNS server for Device Token : " + item.DeviceToken);
-                    Thread.Sleep(1000); //Wait to get the response from apple.
+                    Thread.Sleep(1000); // Wait to get the response from Apple.
                 }
                 else
                     Logger.Error("Invalid device token length, possible simulator entry: " + item.DeviceToken);
@@ -229,7 +229,7 @@ namespace MoonAPNS
 
       try
       {
-        _apnsStream.AuthenticateAsClient(host, certificates, System.Security.Authentication.SslProtocols.Ssl3, false);
+        _apnsStream.AuthenticateAsClient(host, certificates, System.Security.Authentication.SslProtocols.Tls, false);
       }
       catch (System.Security.Authentication.AuthenticationException ex)
       {
@@ -265,7 +265,7 @@ namespace MoonAPNS
     {
       try
       {
-        //convert Devide token to HEX value.
+        // Convert device token to HEX value.
         byte[] deviceToken = new byte[payload.DeviceToken.Length / 2];
         for (int i = 0; i < deviceToken.Length; i++)
             deviceToken[i] = byte.Parse(payload.DeviceToken.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber);
@@ -275,30 +275,30 @@ namespace MoonAPNS
         // Command
         memoryStream.WriteByte(1); // Changed command Type 
 
-        //Adding ID to Payload
+        // Adding ID to Payload
         memoryStream.Write(Encoding.ASCII.GetBytes(payload.PayloadId.ToString()), 0, payload.PayloadId.ToString().Length);
 
-        //Adding ExpiryDate to Payload
+        // Adding ExpiryDate to Payload
         int epoch = (int) (DateTime.UtcNow.AddMinutes(300) - new DateTime(1970, 1, 1)).TotalSeconds;
         byte[] timeStamp = BitConverter.GetBytes(epoch);
         memoryStream.Write(timeStamp, 0, timeStamp.Length);
 
         byte[] tokenLength = BitConverter.GetBytes((Int16) 32);
         Array.Reverse(tokenLength);
-        // device token length
+        // Device token length
         memoryStream.Write(tokenLength, 0, 2);
 
         // Token
         memoryStream.Write(deviceToken, 0, 32);
 
-      // String length
+        // String length
         string apnMessage = payload.ToJson();
-        Logger.Info("Payload generated for " + payload.DeviceToken + " : " + apnMessage);
+        // Logger.Info("Payload generated for " + payload.DeviceToken + " : " + apnMessage);
 
         byte[] apnMessageLength = BitConverter.GetBytes((Int16) apnMessage.Length);
         Array.Reverse(apnMessageLength);
 
-        // message length
+        // Message length
         memoryStream.Write(apnMessageLength, 0, 2);
 
         // Write the message
@@ -324,60 +324,59 @@ namespace MoonAPNS
 
         if (_conected)
         {
-            //Set up
+            // Set up
             byte[] buffer = new byte[38];
             int recd = 0;
             DateTime minTimestamp = DateTime.Now.AddYears(-1);
 
-            //Get the first feedback
+            // Get the first feedback
             recd = _apnsStream.Read(buffer, 0, buffer.Length);
             Logger.Info("Feedback response received.");
 
             if (recd == 0)
                 Logger.Info("Feedback response is empty.");
 
-            //Continue while we have results and are not disposing
+            // Continue while we have results and are not disposing
             while (recd > 0)
             {
                 Logger.Info("processing feedback response");
                 var fb = new Feedback();
 
-                //Get our seconds since 1970 ?
+                // Get our seconds since 1970 ?
                 byte[] bSeconds = new byte[4];
                 byte[] bDeviceToken = new byte[32];
 
                 Array.Copy(buffer, 0, bSeconds, 0, 4);
 
-                //Check endianness
+                // Check endianness
                 if (BitConverter.IsLittleEndian)
                     Array.Reverse(bSeconds);
 
                 int tSeconds = BitConverter.ToInt32(bSeconds, 0);
 
-                //Add seconds since 1970 to that date, in UTC and then get it locally
+                // Add seconds since 1970 to that date, in UTC and then get it locally
                 fb.Timestamp = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(tSeconds).ToLocalTime();
 
 
-                //Now copy out the device token
+                // Now copy out the device token
                 Array.Copy(buffer, 6, bDeviceToken, 0, 32);
 
                 fb.DeviceToken = BitConverter.ToString(bDeviceToken).Replace("-", "").ToLower().Trim();
 
-                //Make sure we have a good feedback tuple
+                // Make sure we have a good feedback tuple
                 if (fb.DeviceToken.Length == 64 && fb.Timestamp > minTimestamp)
                 {
-                    //Raise event
-                    //this.Feedback(this, fb);
+                    // Raise event
                     feedbacks.Add(fb);
                 }
 
-                //Clear our array to reuse it
+                // Clear our array to reuse it
                 Array.Clear(buffer, 0, buffer.Length);
 
-                //Read the next feedback
+                // Read the next feedback
                 recd = _apnsStream.Read(buffer, 0, buffer.Length);
             }
-            //clode the connection here !
+            // Close the connection here !
             Disconnect();
             if (feedbacks.Count > 0)
                 Logger.Info("Total {0} feedbacks received.", feedbacks.Count);
@@ -405,5 +404,3 @@ namespace MoonAPNS
       }
   }
 }
-
-
