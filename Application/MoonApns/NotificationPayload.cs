@@ -1,4 +1,4 @@
-/*Copyright 2011 Arash Norouzi
+/* Copyright 2011 Arash Norouzi
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -137,7 +137,7 @@ namespace MoonAPNS
 				else
 					encodedString.Append(c);
 			}
-			return rawString;// encodedString.ToString();
+			return rawString;
 		}
 
 		public override string ToString()

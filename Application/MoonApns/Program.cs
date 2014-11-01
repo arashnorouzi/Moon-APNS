@@ -1,4 +1,4 @@
-/*Copyright 2011 Arash Norouzi
+/* Copyright 2011 Arash Norouzi
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace MoonAPNS
     {
         private static void Main(string[] args)
         {
-            // var payload1 = new NotificationPayload("Device token","Message",Badge,"Sound");
             var payload1 = new NotificationPayload("Device Token", "Message", 1, "default");
             payload1.AddCustom("RegionID", "IDQ10150");
 
