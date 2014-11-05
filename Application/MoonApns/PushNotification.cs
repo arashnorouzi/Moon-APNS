@@ -229,7 +229,7 @@ namespace MoonAPNS
 
       try
       {
-        _apnsStream.AuthenticateAsClient(host, certificates, System.Security.Authentication.SslProtocols.Ssl3, false);
+        _apnsStream.AuthenticateAsClient(host, certificates, System.Security.Authentication.SslProtocols.Tls, false);
       }
       catch (System.Security.Authentication.AuthenticationException ex)
       {
