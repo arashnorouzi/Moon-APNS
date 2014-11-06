@@ -276,7 +276,7 @@ namespace MoonAPNS
         memoryStream.WriteByte(1); // Changed command Type 
 
         //Adding ID to Payload
-        memoryStream.Write(Encoding.ASCII.GetBytes(payload.PayloadId.ToString()), 0, payload.PayloadId.ToString().Length);
+        memoryStream.Write(Encoding.UTF8.GetBytes(payload.PayloadId.ToString()), 0, payload.PayloadId.ToString().Length);
 
         //Adding ExpiryDate to Payload
         int epoch = (int) (DateTime.UtcNow.AddMinutes(300) - new DateTime(1970, 1, 1)).TotalSeconds;
@@ -302,7 +302,7 @@ namespace MoonAPNS
         memoryStream.Write(apnMessageLength, 0, 2);
 
         // Write the message
-        memoryStream.Write(Encoding.ASCII.GetBytes(apnMessage), 0, apnMessage.Length);
+        memoryStream.Write(Encoding.UTF8.GetBytes(apnMessage), 0, apnMessage.Length);
         return memoryStream.ToArray();
       }
       catch (Exception ex)
