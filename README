@@ -1,4 +1,8 @@
 *Moon Apple Push Notification Service Library*
 A free open source C# library for sending Apple Push Notifications in any .NET application.
 
-Read more: http://arashnorouzi.wordpress.com/
+Read the original more: http://arashnorouzi.wordpress.com/
+
+I Fix SslProtocol & support Chinese message, now it works perfectly.
+
+Read the process of modification： https://medium.com/@jamesbang/moonapns-%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F-870ba2b4139e
