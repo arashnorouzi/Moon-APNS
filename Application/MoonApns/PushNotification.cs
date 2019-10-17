@@ -229,7 +229,7 @@ namespace MoonAPNS
 
       try
       {
-        _apnsStream.AuthenticateAsClient(host, certificates, System.Security.Authentication.SslProtocols.Ssl3, false);
+        _apnsStream.AuthenticateAsClient(host, certificates, System.Security.Authentication.SslProtocols.Tls12, false);
       }
       catch (System.Security.Authentication.AuthenticationException ex)
       {
@@ -295,14 +295,14 @@ namespace MoonAPNS
         string apnMessage = payload.ToJson();
         Logger.Info("Payload generated for " + payload.DeviceToken + " : " + apnMessage);
 
-        byte[] apnMessageLength = BitConverter.GetBytes((Int16) apnMessage.Length);
+        byte[] apnMessageLength = BitConverter.GetBytes((Int16)Encoding.UTF8.GetBytes(apnMessage).Length);
         Array.Reverse(apnMessageLength);
 
         // message length
         memoryStream.Write(apnMessageLength, 0, 2);
 
         // Write the message
-        memoryStream.Write(Encoding.ASCII.GetBytes(apnMessage), 0, apnMessage.Length);
+        memoryStream.Write(Encoding.UTF8.GetBytes(apnMessage), 0, Encoding.UTF8.GetBytes(apnMessage).Length);
         return memoryStream.ToArray();
       }
       catch (Exception ex)
